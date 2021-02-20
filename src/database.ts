@@ -1,6 +1,7 @@
 import * as Knex from 'knex';
 import * as Bookshelf from 'bookshelf';
 import * as eloquent from 'bookshelf-eloquent';
+import * as paranoia from 'bookshelf-paranoia';
 import * as dbConf from '../knexfile';
 
 export default class Database {
@@ -20,6 +21,7 @@ export default class Database {
     this._knex = Knex(dbConf['development']);
 
     this._bookshelf = Bookshelf(this._knex);
+    this._bookshelf.plugin(paranoia);
     this._bookshelf.plugin(eloquent);
 
     Database._instance = this;

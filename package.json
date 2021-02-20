@@ -29,15 +29,20 @@
     "@nestjs/common": "^7.5.1",
     "@nestjs/core": "^7.5.1",
     "@nestjs/platform-express": "^7.5.1",
+    "bcrypt": "^5.0.0",
     "bookshelf": "^1.2.0",
     "bookshelf-eloquent": "^0.1.15",
+    "bookshelf-paranoia": "^0.13.1",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "dotenv": "^8.2.0",
     "knex": "^0.21.17",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
-    "ts-dotenv": "^0.8.3"
+    "ts-dotenv": "^0.8.3",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",

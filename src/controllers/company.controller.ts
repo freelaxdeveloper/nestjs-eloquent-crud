@@ -16,7 +16,7 @@ import { CompanyUpdateRequest } from '../requests/CompanyUpdateRequest';
 export class CompanyController {
   @Get()
   async index() {
-    const items = await CompanyModel.get();
+    const items = await CompanyModel.with(['users']).get();
 
     return items;
   }
@@ -30,7 +30,7 @@ export class CompanyController {
 
   @Get(':id')
   async show(@Param('id') id: number) {
-    const item = await CompanyModel.findById(id);
+    const item = await CompanyModel.forge({ id }).with(['users']).fetch();
 
     return item;
   }

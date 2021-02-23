@@ -5,11 +5,15 @@ import { ulid } from 'ulid';
 const db = Database.getInstance();
 const bookshelf = db.getBookshelf();
 
-export default bookshelf.Model.extend({
+export default bookshelf.model('User', {
   tableName: 'users',
   softDelete: true,
   hasTimestamps: ['created_at', 'updated_at'],
   hidden: ['password'],
+
+  companies() {
+    return this.belongsToMany('Company', 'users_companies', 'user_id', 'company_id');
+  },
 
   initialize() {
     this.on('fetching', (model, attrs, options) => {

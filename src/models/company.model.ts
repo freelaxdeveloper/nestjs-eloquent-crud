@@ -4,13 +4,15 @@ import { ulid } from 'ulid';
 const db = Database.getInstance();
 const bookshelf = db.getBookshelf();
 
+import User from './user.model';
+
 export default bookshelf.model('Company', {
   tableName: 'companies',
   softDelete: true,
   hasTimestamps: ['created_at', 'updated_at'],
 
   users() {
-    return this.belongsToMany('User', 'users_companies', 'company_id', 'user_id');
+    return this.belongsToMany(User, 'users_companies', 'company_id', 'user_id');
   },
 
   initialize() {

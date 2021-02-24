@@ -30,7 +30,7 @@ export class UserController {
 
   @Get(':id')
   async show(@Param('id') id: number) {
-    const user = await UserModel.forge({ id }).with(['companies']).fetch();
+    const user = await UserModel.forge({ id }).with(['companies', 'addresses']).fetch();
 
     return user;
   }

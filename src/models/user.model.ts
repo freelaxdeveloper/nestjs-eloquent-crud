@@ -5,14 +5,21 @@ import { ulid } from 'ulid';
 const db = Database.getInstance();
 const bookshelf = db.getBookshelf();
 
+import Address from './address.model';
+import Company from './company.model';
+
 export default bookshelf.model('User', {
   tableName: 'users',
   softDelete: true,
   hasTimestamps: ['created_at', 'updated_at'],
   hidden: ['password'],
 
+  addresses() {
+    return this.hasMany(Address);
+  },
+
   companies() {
-    return this.belongsToMany('Company', 'users_companies', 'user_id', 'company_id');
+    return this.belongsToMany(Company, 'users_companies', 'user_id', 'company_id');
   },
 
   initialize() {

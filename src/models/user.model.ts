@@ -23,9 +23,7 @@ export default bookshelf.model('User', {
   },
 
   initialize() {
-    this.on('fetching', (model, attrs, options) => {
-      options.query.whereNull('deleted_at');
-    });
+    // this.constructor.__super__.initialize.apply(this, arguments);
 
     this.on('creating', async (model) => {
       const hashPassword = await bcrypt.hashSync(

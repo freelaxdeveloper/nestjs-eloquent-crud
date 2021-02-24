@@ -15,8 +15,11 @@ import { UserUpdateRequest } from '../requests/UserUpdateRequest';
 @Controller('users')
 export class UserController {
   @Get()
-  async index() {
-    const users = await UserModel.with(['companies']).get();
+  index() {
+    const users = UserModel
+      .with(['companies', 'addresses'])
+      .withCount(['companies', 'addresses'])
+      .get();
 
     return users;
   }
@@ -30,7 +33,10 @@ export class UserController {
 
   @Get(':id')
   async show(@Param('id') id: number) {
-    const user = await UserModel.forge({ id }).with(['companies', 'addresses']).fetch();
+    const user = await UserModel.forge({ id })
+      .with(['companies', 'addresses'])
+      .withCount(['companies', 'addresses'])
+      .fetch();
 
     return user;
   }

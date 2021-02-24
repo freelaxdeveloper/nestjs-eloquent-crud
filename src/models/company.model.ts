@@ -16,9 +16,6 @@ export default bookshelf.model('Company', {
   },
 
   initialize() {
-    this.on('fetching', (model, attrs, options) => {
-      options.query.whereNull('deleted_at');
-    });
     this.on('creating', async () => {
       this.set('ulid', ulid());
     });
